@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script src="./bin/pixi.js"></script>
+    <!-- pixi-particles.js 1.2.1 -->
+    <script src="http://jsrun.it/assets/d/a/6/Z/da6ZI"></script>
+
+    <!-- stats.js -->
+    <script src="http://jsrun.it/assets/b/a/X/K/baXKG"></script>
+</head>
+<body>
+<div id="pixiview"></div>
+<style>
+    body{
+        margin: 0;
+    }
+</style>
+<script>
+var container = new PIXI.Container();
+
+//var renderer = new PIXI.WebGLRenderer(500, 400, {backgroundColor: 0x000});
+var renderer = new PIXI.CanvasRenderer(1920, 1000, {backgroundColor: 0x000});
+
+document.body.appendChild(renderer.view);
+
+var emitter = new cloudkid.Emitter(
+    container,
+    [PIXI.Texture.fromImage('./img/circle.png')],
+    {
+        "alpha": {
+            "start": 0.6,
+            "end": 1
+        },
+        "scale": {
+            "start": 0.02,
+            "end": 0.5,
+            "minimumScaleMultiplier": 0.5
+        },
+        "color": {
+            "start": "#ffffff",
+            "end": "#ffffff"
+        },
+        "speed": {
+            "start": 201,
+            "end": 200
+        },
+        "acceleration": {
+            "x": 0,
+            "y": 0
+        },
+        "startRotation": {
+            "min": 0,
+            "max": 360
+        },
+        "rotationSpeed": {
+            "min": 0,
+            "max": 200
+        },
+        "lifetime": {
+            "min": 20,
+            "max": 4
+        },
+        "blendMode": "add",
+        "ease": [
+            {
+                "s": 0,
+                "cp": 0.379,
+                "e": 0.548
+            },
+            {
+                "s": 0.548,
+                "cp": 0.717,
+                "e": 0.676
+            },
+            {
+                "s": 0.676,
+                "cp": 0.635,
+                "e": 1
+            }
+        ],
+        "frequency": 0.004,
+        "emitterLifetime": -1,
+        "maxParticles": 1000,
+        "pos": {
+            "x": 0,
+            "y": 0
+        },
+        "addAtBack": false,
+        "spawnType": "rect",
+        "spawnRect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 20
+        }
+    }
+);
+emitter.updateOwnerPos(300, 300);
+
+var elapsed = Date.now();
+
+var update = function(){
+
+var now = Date.now();
+emitter.update((now - elapsed) * 0.001);
+elapsed = now;
+
+renderer.render(container);
+
+//stats.update();
+
+requestAnimationFrame(update);
+};
+
+emitter.emit = true;
+
+update();
+
+</script>
+</body>
+</html>
