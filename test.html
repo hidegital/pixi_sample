@@ -7,81 +7,6 @@
 <body>
 <div id="pixiview"></div>
 <script>
-//    var width = 600;
-//    var height = 400;
-//
-//    // ステージを作る
-//    var stage = new PIXI.Stage(0x000000);
-//
-//    // レンダラーを作る
-//    var renderer = PIXI.autoDetectRenderer(width, height);
-//
-//    // レンダラーのviewをDOMに追加する
-//    document.getElementById("pixiview").appendChild(renderer.view);
-//
-//    // テキストオブジェクトを作る
-//    var word = "Hello World!";
-//    var style = {font:'bold 60pt Arial', fill:'white'};
-//    var textobj = new PIXI.Text(word, style);
-//    textobj.position.x = 60;
-//    textobj.position.y = height / 2;
-//
-//    // テキストオブジェクトをステージに乗せる
-//    stage.addChild(textobj);
-//
-//    // アニメーション関数を定義する
-//    function animate(){
-//        requestAnimationFrame(animate); // 次の描画タイミングでanimateを呼び出す
-//        textobj.rotation += 0.01; // テキストを回転する
-//        renderer.render(stage);   // 描画する
-//    }
-//
-//    // 次のアニメーションフレームでanimate()を呼び出してもらう
-//    requestAnimationFrame(animate);
-// You can use either `new PIXI.WebGLRenderer`, `new PIXI.CanvasRenderer`, or `PIXI.autoDetectRenderer`
-// which will try to choose the best renderer for the environment you are in.
-
-
-
-
-//var renderer = new PIXI.WebGLRenderer(800, 600);
-//
-//// The renderer will create a canvas element for you that you can then insert into the DOM.
-//document.getElementById("pixiview").appendChild(renderer.view);
-//
-//// You need to create a root container that will hold the scene you want to draw.
-//var stage = new PIXI.Container();
-//
-//// load the texture we need
-//PIXI.loader.add('bunny', 'bunny.png').load(function (loader, resources) {
-//    // This creates a texture from a 'bunny.png' image.
-//    var bunny = new PIXI.Sprite(resources.bunny.texture);
-//
-//    // Setup the position and scale of the bunny
-//    bunny.position.x = 400;
-//    bunny.position.y = 300;
-//
-//    bunny.scale.x = 2;
-//    bunny.scale.y = 2;
-//
-//    // Add the bunny to the scene we are building.
-//    stage.addChild(bunny);
-//
-//    // kick off the animation loop (defined below)
-//    animate();
-//});
-//
-//function animate() {
-//    // start the timer for the next animation loop
-//    requestAnimationFrame(animate);
-//
-//    // each frame we spin the bunny around a bit
-//    bunny.rotation += 0.01;
-//
-//    // this is the main render call that makes pixi draw your container and its children.
-//    renderer.render(stage);
-//}
-
 
 var viewWidth = 630;
 var viewHeight = 410;
@@ -98,52 +23,9 @@ document.body.appendChild(renderer.view);
 // create an new instance of a pixi stage
 var stage = new PIXI.Stage(0x000);
 
-// create a background texture
-//var pondFloorTexture = PIXI.Texture.fromImage("laserBG.jpg");
-//
-//// create a new background sprite
-//var pondFloorSprite = new PIXI.Sprite(pondFloorTexture);
-//stage.addChild(pondFloorSprite);
-
 // create an array to store a refference to the dude in the pond
 var dudeArray = [];
-/*
- var totaldude = 40;
- for (var i = 0; i < totaldude; i++)
- {
- // create a new Sprite that uses the image name that we just generated as its source
- var dude =  PIXI.Sprite.fromImage("laser05.png");
 
- // set the anchor point so the the dude texture is centerd on the sprite
- dude.anchor.x = dude.anchor.y = 0.5;
-
- // set a random scale for the dude - no point them all being the same size!
- dude.scale.x = dude.scale.y = 0.8 + Math.random() * 0.3;
-
- // finally let's set the dude to be a random position..
- dude.position.x = Math.random() * viewWidth;
- dude.position.y = Math.random() * viewHeight;
-
- // time to add the dude to the pond container!
- stage.addChild(dude);
-
- dude.blendMode = PIXI.blendModes.ADD
-
- dude.scale.x = 20;
- // create some extra properties that will control movement
- // create a random direction in radians. This is a number between 0 and PI*2 which is the equivalent of 0 - 360 degrees
- dude.direction = Math.random() * Math.PI * 2;
-
- // this number will be used to modify the direction of the dude over time
- dude.turningSpeed = Math.random() - 0.8;
-
- // create a random speed for the dude between 0 - 2
- dude.speed = 2 + Math.random() * 2;
-
- // finally we push the dude into the dudeArray so it it can be easily accessed later
- dudeArray.push(dude);
- }
- */
 var counter = 0;
 
 // create a bounding box box for the little dudes
@@ -225,7 +107,6 @@ function animate()
     }
     // increment the ticker
     tick += 1;
-
 
     // time to render the stage !
     renderer.render(stage);
